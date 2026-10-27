@@ -1,0 +1,23 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Authenticator } from '@aws-amplify/ui-react';
+import App from "./App.tsx";
+import { ToastProvider } from "./context/ToastContext";
+import { ToastContainer } from "./components/ui/ToastContainer";
+import "./index.css";
+import '@aws-amplify/ui-react/styles.css';
+import { Amplify } from "aws-amplify";
+import outputs from "../amplify_outputs.json";
+
+Amplify.configure(outputs);
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+        <Authenticator>
+            <ToastProvider>
+                <App />
+                <ToastContainer />
+            </ToastProvider>
+        </Authenticator>
+    </React.StrictMode>
+);
